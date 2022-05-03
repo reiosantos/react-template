@@ -1,0 +1,20 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "target": "es5",
+    "module": "CommonJS",
+    "inlineSources": true,
+    "jsx": "react",
+    "types": [
+      "node",
+      "jest"
+    ]
+  },
+  "include": [
+    "tests/**/*",
+    "typings/**/*"
+  ],
+  "exclude": [
+    "src/**/*"
+  ]
+}

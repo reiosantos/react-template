@@ -1,16 +1,36 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import ReactDOM from 'react-dom';
+import './assets/styles/index.css';
+import { initializeStore } from './store';
+import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
+import { ThemeProvider } from 'styled-components';
+import PageLoader from './shared/containers/loader';
+import Notification from './shared/containers/notification';
+import ErrorBoundary from './shared/components/errorBoundary';
+import AppTheme from './theme';
+import { ThemeProvider as MuiThemeProvider, StyledEngineProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { AppRoutes } from './routes';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
+ReactDOM.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <StyledEngineProvider injectFirst>
+      <MuiThemeProvider theme={AppTheme}>
+        <ThemeProvider theme={AppTheme}>
+          <Provider store={initializeStore()}>
+            <CssBaseline />
+            <ErrorBoundary>
+              <Notification />
+              <PageLoader />
+              <AppRoutes />
+            </ErrorBoundary>
+          </Provider>
+        </ThemeProvider>
+      </MuiThemeProvider>
+    </StyledEngineProvider>
+  </React.StrictMode>,
+  document.getElementById('root') as HTMLElement
 );
 
 // If you want to start measuring performance in your app, pass a function
