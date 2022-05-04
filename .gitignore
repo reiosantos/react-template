@@ -64,3 +64,4 @@ public/workbox-*.js*
 report.*.json
 **/.DS_Store
 core
+.idea/
